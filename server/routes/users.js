@@ -1,9 +1,11 @@
-import express from 'express'
+import express from 'express';
+import runQuery from "../databaseConnection";
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  const data = await runQuery(`SELECT * FROM log Inner join user on log.userID = user.id`);
+  res.send({ data: data });
 });
 
 export default router;
