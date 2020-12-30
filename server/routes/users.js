@@ -12,7 +12,7 @@ router.post("/", async function (req, res, next) {
   const {  userId,action } = req.body;
   if(!userId) res.status(400);
   const CreationDate = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
-  const queryString = `insert into log values (${userId},'${action}','${CreationDate}')`;
+  const queryString = `insert into log values (${userId},'${action}','${CreationDate}');`;
   console.log(data);
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
