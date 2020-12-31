@@ -6,7 +6,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import logRouter from './routes/log';
 import userRouter from './routes/users';
-import postRouter from './routes/post';
+import postRouter from './routes/posts';
 import adminRouter from './routes/user-admin';
 
 var app = express();
