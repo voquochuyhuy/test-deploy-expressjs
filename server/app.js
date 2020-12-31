@@ -6,7 +6,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import logRouter from './routes/log';
 import userRouter from './routes/users';
-import postRouter from './routes/posts';
+import postRouter from './routes/question';
 import adminRouter from './routes/user-admin';
 
 var app = express();
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', indexRouter);
 app.use('/log', logRouter);
 app.use('/user', userRouter);
-app.use('/post', postRouter);
+app.use('/question', postRouter);
 app.use('/admin', adminRouter);
 
 export default app;
