@@ -25,14 +25,15 @@ router.get("/:id", async function (req, res, next) {
 
 
 router.post("/", async function (req, res, next) {
-  const { userId,type,lang,content,additionalInformation, audioURL,photoURL,questionType,comments, featuredAnswer, vote, status } = req.body;
+  const { email,userId,type,lang,content,additionalInformation, audioURL,photoURL,questionType,comments, featuredAnswer, vote, status } = req.body;
   const Date = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
+  const user = await runQuery(`select * from user where email = '${email}'`);
   const queryString = `insert into question 
   (userID, type, lang, 
   content, additionalInformation, audioURL, 
   photoURL, questionType, 
   comments, featuredAnswer, vote, status, 
-  createdAt, updatedAt) values(${userId},'${type}','${type}','${lang}','${content}','${additionalInformation}','${audioURL}','${photoURL}','${questionType}','${comments}','${featuredAnswer}',${vote},'${status}','${Date}','${Date}');`;
+  createdAt, updatedAt) values(${user.id},'${type}','${type}','${lang}','${content}','${additionalInformation}','${audioURL}','${photoURL}','${questionType}','${comments}','${featuredAnswer}',${vote},'${status}','${Date}','${Date}');`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {
