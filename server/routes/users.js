@@ -51,7 +51,7 @@ router.post("/", async function (req, res, next) {
   //   });
   // });
   const id = uuidv4();
-  const data = await runQuery(`insert into user (id,username, email,password,gender,bio,country,nativeLanguage,interestLanguages,points,photoURL,status, createdAt) values ('${id}',${username}','${email}','${password}','${gender}','${bio}','${country}','${nativeLanguage}','${interestLanguages}',${points},'${photoURL}','${status}','${date}');`);
+  const data = await runQuery(`insert into user (id,username, email,password,gender,bio,country,nativeLanguage,interestLanguages,points,photoURL,status, createdAt) values ('${id}','${username}','${email}','${password}','${gender}','${bio}','${country}','${nativeLanguage}','${interestLanguages}',${points},'${photoURL}','${status}','${date}');`);
   res.send({ data: data });
 });
 
