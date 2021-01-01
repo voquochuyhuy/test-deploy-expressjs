@@ -8,6 +8,7 @@ import logRouter from './routes/log';
 import userRouter from './routes/users';
 import postRouter from './routes/question';
 import adminRouter from './routes/user-admin';
+import reportRouter from './routes/report';
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use('/log', logRouter);
 app.use('/user', userRouter);
 app.use('/question', postRouter);
 app.use('/admin', adminRouter);
+app.use('/report', reportRouter);
 
 export default app;
