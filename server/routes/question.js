@@ -29,12 +29,7 @@ router.post("/", async function (req, res, next) {
   const { userId,type,lang,content,additionalInformation, audioURL,photoURL,questionType,comments, featuredAnswer, vote, status } = req.body;
   const date = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
   const id = uuidv4();
-  const queryString = `insert into question 
-  (id,userID, type, lang, 
-  content, additionalInformation, audioURL, 
-  photoURL, questionType, 
-  comments, featuredAnswer, vote, status, 
-  createdAt, updatedAt) values('${id}','${userId}','${type}','${type}','${lang}','${content}','${additionalInformation}','${audioURL}','${photoURL}','${questionType}','${comments}','${featuredAnswer}',${vote},'${status}','${date}','${date}');`;
+  const queryString = `insert into question (id,userID, type, lang,content, additionalInformation, audioURL,photoURL, questionType, comments, featuredAnswer, vote, status, createdAt, updatedAt) values('${id}','${userId}','${type}','${type}','${lang}','${content}','${additionalInformation}','${audioURL}','${photoURL}','${questionType}','${comments}','${featuredAnswer}',${vote},'${status}','${date}','${date}');`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {

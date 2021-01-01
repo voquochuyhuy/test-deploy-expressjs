@@ -9,6 +9,7 @@ var connection = mysql.createConnection({
 })
 
 const runQuery = async (query)=>{
+  console.log(query);
   return  new Promise(function(resolve,reject){
     connection.query(query,function(err,rows,fields){
       console.log(err);
