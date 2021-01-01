@@ -1,5 +1,6 @@
 import express from "express";
 import moment from "moment";
+import { v4 as uuidv4 } from 'uuid';
 import runQuery from "../databaseConnection";
 import { authenticateJWT } from "../middleware/authencationJWT";
 
@@ -26,9 +27,10 @@ router.get("/api/user-list", async function (req, res, next) {
 
 /* CREATE user admin */
 router.post("/", async function (req, res, next) {
-  const { Username, Password } = req.body;
-  if(!Username || !Password) res.status(400);
-  const queryString = `insert into admin values ('${Username}','${Password}')`;
+  const { username, email } = req.body;
+  const id = uuidv4();
+  if(!username || !email) res.status(400);
+  const queryString = `insert into admin (id,username,email,password,role) values ('${id}','${username}','${email}','1','admin')`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {

@@ -1,5 +1,6 @@
 import express from "express";
 import runQuery from "../databaseConnection";
+import { v4 as uuidv4 } from 'uuid';
 import { authenticateJWT } from "../middleware/authencationJWT";
 import aesjs from "aes-js";
 import bcrypt from "bcrypt";
@@ -48,9 +49,10 @@ router.post("/", async function (req, res, next) {
   //     res.send({ data: data });
   //   });
   // });
+  const id = uuidv4();
   const data = await runQuery(`insert into user 
-      (username, email,password,gender,bio,country,nativeLanguage,interestLanguages,points,photoURL,status, createdAt) 
-      values ('${username}','${email}','${password}','${gender}','${bio}','${country}','${nativeLanguage}','${interestLanguages}',${points},'${photoURL}','${status}','${Date}');`);
+      (id,username, email,password,gender,bio,country,nativeLanguage,interestLanguages,points,photoURL,status, createdAt) 
+      values ('${id}',${username}','${email}','${password}','${gender}','${bio}','${country}','${nativeLanguage}','${interestLanguages}',${points},'${photoURL}','${status}','${Date}');`);
   res.send({ data: data });
 });
 
@@ -58,43 +60,55 @@ router.post("/", async function (req, res, next) {
 router.put("/", async function (req, res, next) {
   const {
     id,
-    displayName,
-    websiteUrl,
-    region,
-    aboutMe,
-    profileImageUrl,
+    username,
     email,
-    age,
-    account,
+    password,
+    gender,
+    bio,
+    country,
+    nativeLanguage,
+    interestLanguages,
+    points,
+    photoURL,
+    status,
   } = req.body;
   let queryString = `UPDATE user SET `;
-  if (displayName) {
-    queryString = queryString.concat(`DisplayName = '${displayName}', `);
-  }
-  if (websiteUrl) {
-    queryString = queryString.concat(`WebsiteUrl = '${websiteUrl}', `);
-  }
-  if (region) {
-    queryString = queryString.concat(`Region = '${region}', `);
-  }
-  if (aboutMe) {
-    queryString = queryString.concat(`AboutMe = '${aboutMe}', `);
-  }
-  if (profileImageUrl) {
-    queryString = queryString.concat(
-      `ProfileImageUrl = '${profileImageUrl}', `
-    );
+  if (username) {
+    queryString = queryString.concat(`username = '${username}', `);
   }
   if (email) {
-    queryString = queryString.concat(`Email = '${email}', `);
+    queryString = queryString.concat(`email = '${email}', `);
   }
-  if (age) {
-    queryString = queryString.concat(`Age = '${age}', `);
+  if (password) {
+    queryString = queryString.concat(`password = '${password}', `);
   }
-  if (account) {
-    queryString = queryString.concat(`Account = '${account}', `);
+  if (gender) {
+    queryString = queryString.concat(`gender = '${gender}', `);
   }
-  queryString = queryString.concat(`WHERE id = ${id}`);
+  if (bio) {
+    queryString = queryString.concat(
+      `bio = '${bio}', `
+    );
+  }
+  if (country) {
+    queryString = queryString.concat(`country = '${country}', `);
+  }
+  if (nativeLanguage) {
+    queryString = queryString.concat(`nativeLanguage = '${nativeLanguage}', `);
+  }
+  if (interestLanguages) {
+    queryString = queryString.concat(`interestLanguages = '${interestLanguages}', `);
+  }
+  if (points) {
+    queryString = queryString.concat(`points = '${points}', `);
+  }
+  if (photoURL) {
+    queryString = queryString.concat(`photoURL = '${photoURL}', `);
+  }
+  if (status) {
+    queryString = queryString.concat(`status = '${status}' `);
+  }
+  queryString = queryString.concat(`WHERE id = '${id}';`);
   try {
     const data = await runQuery(queryString);
     res.send({ data: data });
@@ -106,7 +120,7 @@ router.put("/", async function (req, res, next) {
 /* Delete user . */
 router.delete("/:id", async function (req, res, next) {
   const id = req.params.id;
-  const data = await runQuery(`DELETE FROM user WHERE id = ${id}`);
+  const data = await runQuery(`DELETE FROM user WHERE id = '${id}'`);
   res.send({ data: data });
 });
 

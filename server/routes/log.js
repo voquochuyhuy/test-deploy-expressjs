@@ -1,5 +1,6 @@
 import express from 'express';
 import moment from "moment";
+import { v4 as uuidv4 } from 'uuid';
 import runQuery from "../databaseConnection";
 var router = express.Router();
 
@@ -12,7 +13,8 @@ router.post("/", async function (req, res, next) {
   const {  userId,action } = req.body;
   if(!userId) res.status(400);
   const CreationDate = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
-  const queryString = `insert into log (userID, action,createdAt) values (${userId},'${action}','${CreationDate}');`;
+  const id = uuidv4();
+  const queryString = `insert into log (id,userID, action,createdAt) values ('${id}','${userId}','${action}','${CreationDate}');`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {
