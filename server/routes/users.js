@@ -23,6 +23,7 @@ router.get("/:id", async function (req, res, next) {
 /* CREATE user . */
 router.post("/", async function (req, res, next) {
   const {
+    id,
     username,
     email,
     password,
@@ -50,7 +51,7 @@ router.post("/", async function (req, res, next) {
   //     res.send({ data: data });
   //   });
   // });
-  const id = uuidv4();
+  // const id = uuidv4();
   const data = await runQuery(`insert into user (id,username, email,password,gender,bio,country,nativeLanguage,interestLanguages,points,photoURL,status, createdAt) values ('${id}','${username}','${email}','${password}','${gender}','${bio}','${country}','${nativeLanguage}','${interestLanguages}',${points},'${photoURL}','${status}','${date}');`);
   res.send({ data: data });
 });
