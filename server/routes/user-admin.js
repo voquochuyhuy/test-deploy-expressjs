@@ -19,7 +19,7 @@ router.get("/admin-list", async function (req, res, next) {
 });
 
 /* GET User List */
-router.get("/api/user-list", async function (req, res, next) {
+router.get("/user-list", async function (req, res, next) {
   const data = await runQuery(`SELECT * FROM user`);
   res.send({ data: data });
 });
