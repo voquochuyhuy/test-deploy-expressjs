@@ -30,5 +30,5 @@ app.use('/user', userRouter);
 app.use('/question', postRouter);
 app.use('/admin', adminRouter);
 app.use('/report', reportRouter);
-app.use('/auth', reportRouter);
+app.use('/auth', authRouter);
 export default app;
