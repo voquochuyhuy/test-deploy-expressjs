@@ -9,7 +9,7 @@ import userRouter from './routes/users';
 import postRouter from './routes/question';
 import adminRouter from './routes/user-admin';
 import reportRouter from './routes/report';
-
+import authRouter from './routes/auth';
 var app = express();
 
 // app.use(cors());
@@ -30,5 +30,5 @@ app.use('/user', userRouter);
 app.use('/question', postRouter);
 app.use('/admin', adminRouter);
 app.use('/report', reportRouter);
-
+app.use('/auth', reportRouter);
 export default app;

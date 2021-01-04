@@ -6,7 +6,7 @@ import { accessTokenSecret, refreshTokens, refreshTokenSecret } from '../middlew
 var router = express.Router();
 
 /* LOGIN */
-router.post('/api/login', async function(req, res, next) {
+router.post('/login', async function(req, res, next) {
     const { username, password } = req.body;
     const data = await runQuery(`SELECT * FROM admin WHERE Email = "${username}" AND Password = "${password}"`);
     if (data) {
