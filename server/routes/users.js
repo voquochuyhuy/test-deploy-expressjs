@@ -126,7 +126,8 @@ router.delete("/:id", async function (req, res, next) {
 
 router.delete("/multi-delete", async function (req, res, next) {
   const ids = req.body;
-  const data = await runQuery(`DELETE FROM user WHERE id in (${id})`);
+  console.log(ids);
+  const data = await runQuery(`DELETE FROM user WHERE id in (${ids})`);
   res.send({ data: data });
 });
 
