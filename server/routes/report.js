@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-  const data = await runQuery(`SELECT * FROM report Inner join question on report.postID = question.id`);
+  const data = await runQuery(`SELECT * FROM report Inner join question on report.postID = question.id innner join user on question.userID = user.id`);
   res.send({ data: data });
 });
 router.post("/", async function (req, res, next) {
