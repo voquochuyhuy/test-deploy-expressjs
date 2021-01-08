@@ -124,4 +124,10 @@ router.delete("/:id", async function (req, res, next) {
   res.send({ data: data });
 });
 
+router.delete("/multi-delete", async function (req, res, next) {
+  const ids = req.body;
+  const data = await runQuery(`DELETE FROM user WHERE id in (${id})`);
+  res.send({ data: data });
+});
+
 export default router;
