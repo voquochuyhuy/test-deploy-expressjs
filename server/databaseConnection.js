@@ -4,7 +4,7 @@ import mysql from 'mysql';
 var connection = mysql.createConnection({
   host: 'db4free.net',
   user: 'voquochuy798',
-  password: 'a22994f0',
+  password: 'voquochuy798',
   database: 'togetherbetter'
 })
 
