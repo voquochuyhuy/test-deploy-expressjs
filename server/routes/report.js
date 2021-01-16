@@ -10,11 +10,11 @@ router.get('/', async function(req, res, next) {
   res.send({ data: data });
 });
 router.post("/", async function (req, res, next) {
-  const { id,userID,postID,message } = req.body;
+  const { id,userID,postID,message,targetType,type } = req.body;
   if(!userID) res.status(400);
   const CreationDate = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
   // const id = uuidv4();
-  const queryString = `insert into report (id,userID,postID, message,createdAt) values ('${id}','${userID}','${postID}','${message}','${CreationDate}');`;
+  const queryString = `insert into report (id,userID,postID,targetType,type, message,createdAt) values ('${id}','${userID}','${postID}','${targetType}','${type}','${message}','${CreationDate}');`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {

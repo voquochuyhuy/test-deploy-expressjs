@@ -27,10 +27,10 @@ router.get("/user-list", async function (req, res, next) {
 
 /* CREATE user admin */
 router.post("/", async function (req, res, next) {
-  const { username, email } = req.body;
+  const { username, email, password, role } = req.body;
   const id = uuidv4();
   if(!username || !email) res.status(400);
-  const queryString = `insert into admin (id,username,email,password,role) values ('${id}','${username}','${email}','1','admin')`;
+  const queryString = `insert into admin (id,username,email,password,role) values ('${id}','${username}','${email}','${password}','${role}')`;
   const data = await runQuery(queryString);
   if (data) res.send({ data: data });
   else {
@@ -39,9 +39,9 @@ router.post("/", async function (req, res, next) {
 });
 
 /* DELETE user admin*/
-router.delete("/:id", async function (req, res, next) {
-  const id = req.params.id;
-  const data = await runQuery(`DELETE FROM admin WHERE id='${id}'`);
+router.delete("/", async function (req, res, next) {
+  const id = req.body.id;
+  const data = await runQuery(`DELETE FROM admin WHERE id in (${id})`);
   res.send({ data: data });
 });
 export default router;
