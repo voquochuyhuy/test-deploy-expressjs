@@ -6,11 +6,11 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/question-report', async function(req, res, next) {
-  const data = await runQuery(`SELECT report.id,report.message,report.createdAt,question.content,question.id as questionID,user.username,user.id as userID FROM report Inner join question on report.targetID = question.id inner join user on report.senderID = user.id where report.targetType = 'question'`);
+  const data = await runQuery(`SELECT report.id,report.targetID,report.senderID,report.message,report.createdAt,question.content,question.id as questionID,user.username,user.id as userID FROM report Inner join question on report.targetID = question.id inner join user on report.senderID = user.id where report.targetType = 'question'`);
   res.send({ data: data });
 });
 router.get('/user-report', async function(req, res, next) {
-  const data = await runQuery(`SELECT report.id,report.message,report.createdAt,user.id as userID,user.username FROM report inner join user on report.senderID = user.id where report.targetType = 'user'`);
+  const data = await runQuery(`SELECT report.id,report.targetID,report.senderID,report.message,report.createdAt,user.id as userID,user.username FROM report inner join user on report.senderID = user.id where report.targetType = 'user'`);
   res.send({ data: data });
 });
 router.get('/answer-report', async function(req, res, next) {
