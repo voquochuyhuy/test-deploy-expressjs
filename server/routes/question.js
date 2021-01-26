@@ -83,7 +83,7 @@ router.put("/", async function (req, res, next) {
 
 router.delete("/", authenticateJWT, async function (req, res, next) {
   const id = req.body.id;
-  const data = await runQuery(`DELETE FROM question WHERE id in (${ids})`);
+  const data = await runQuery(`DELETE FROM question WHERE id in (${id})`);
   res.send({ data: data });
 });
 export default router;
