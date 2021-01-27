@@ -20,7 +20,7 @@ router.get('/answer-report', async function(req, res, next) {
 router.get('/dashboard', async function(req, res, next) {
   const CreationDate = moment(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).format('YYYY-MM-DD');
   const totalActiveUser = await runQuery(`SELECT COUNT(*) FROM user WHERE status = 'active' and DATE(createdAt) > ${CreationDate};`);
-  const totalSession = await runQuery(`SELECT COUNT(*) FROM log WHERE DATE(createdAt) > CreationDate;`);
+  const totalSession = await runQuery(`SELECT COUNT(*) FROM log WHERE DATE(createdAt) > ${CreationDate};`);
   const oldestLog = await runQuery(`SELECT * FROM log ORDER BY createdAt ASC LIMIT 1`); 
   const numberOfLog = await runQuery(`SELECT COUNT(*) FROM log`);
   console.log(totalActiveUser,totalSession,oldestLog,numberOfLog);
