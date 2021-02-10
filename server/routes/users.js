@@ -121,7 +121,7 @@ router.put("/", async function (req, res, next) {
 
 router.delete("/", async function (req, res, next) {
   const id = req.body.id;
-  const data = await runQuery(`DELETE FROM user WHERE id = ${id}`);
+  const data = await runQuery(`DELETE FROM user WHERE id = '${id}'`);
   res.send({ data: data });
 });
 
