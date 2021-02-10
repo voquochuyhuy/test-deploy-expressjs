@@ -14,7 +14,7 @@ router.get("/", async function (req, res, next) {
 
 router.get("/:id", async function (req, res, next) {
   const id = req.params.id;
-  const data = await runQuery(`select * from question  WHERE id = ${id}`);
+  const data = await runQuery(`select * from question  WHERE id = ${id} inner join user on question.userID = user.id`);
   if(data){
     res.send({ data: data});
   }
@@ -83,7 +83,7 @@ router.put("/", async function (req, res, next) {
 
 router.delete("/", authenticateJWT, async function (req, res, next) {
   const id = req.body.id;
-  const data = await runQuery(`DELETE FROM question WHERE id in (${id})`);
+  const data = await runQuery(`DELETE FROM question WHERE id = ${id}`);
   res.send({ data: data });
 });
 export default router;

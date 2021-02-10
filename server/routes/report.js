@@ -24,15 +24,13 @@ router.get('/dashboard', async function(req, res, next) {
   const totalActiveUser = await runQuery(`SELECT COUNT(*) FROM user;`);
   const totalSession = await runQuery(`SELECT COUNT(*) FROM log;`);
   const oldestLog = await runQuery(`SELECT * FROM log ORDER BY createdAt ASC LIMIT 1`); 
-  const numberOfLog = await runQuery(`SELECT COUNT(*) FROM log`);
   console.log(totalActiveUser,totalSession,oldestLog,numberOfLog);
   res.send({ data: {
     _totalActiveUser,
     _totalSession,
     totalActiveUser,
     totalSession,
-    oldestLog,
-    numberOfLog
+    oldestLog
   } });
 });
 router.post("/", async function (req, res, next) {
