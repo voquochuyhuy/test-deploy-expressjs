@@ -14,7 +14,7 @@ router.get("/", async function (req, res, next) {
 
 router.get("/:id", async function (req, res, next) {
   const id = req.params.id;
-  const data = await runQuery(`select * from question  WHERE id = ${id} inner join user on question.userID = user.id`);
+  const data = await runQuery(`select * from question inner join user on question.userID = user.id WHERE question.id = ${id}`);
   if(data){
     res.send({ data: data});
   }
