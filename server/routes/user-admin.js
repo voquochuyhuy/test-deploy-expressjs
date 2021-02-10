@@ -41,7 +41,7 @@ router.post("/", async function (req, res, next) {
 /* DELETE user admin*/
 router.delete("/", async function (req, res, next) {
   const id = req.body.id;
-  const data = await runQuery(`DELETE FROM admin WHERE id in (${id})`);
+  const data = await runQuery(`DELETE FROM admin WHERE id = '${id}'`);
   res.send({ data: data });
 });
 export default router;
