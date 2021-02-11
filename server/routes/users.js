@@ -119,8 +119,8 @@ router.put("/", async function (req, res, next) {
 
 /* Delete user . */
 
-router.delete("/", async function (req, res, next) {
-  const id = req.body.id;
+router.delete("/:id", async function (req, res, next) {
+  const id = req.params.id;
   const data = await runQuery(`DELETE FROM user WHERE id = '${id}'`);
   res.send({ data: data });
 });

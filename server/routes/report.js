@@ -44,8 +44,8 @@ router.post("/", async function (req, res, next) {
     res.status(500);
   }
 });
-router.delete("/", async function (req, res, next) {
-  const id = req.body.id;
+router.delete("/:id", async function (req, res, next) {
+  const id = req.params.id;
   const data = await runQuery(`DELETE FROM report WHERE id = '${id}'`);
   res.send({ data: data });
 });

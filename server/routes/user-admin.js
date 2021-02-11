@@ -39,9 +39,9 @@ router.post("/", async function (req, res, next) {
 });
 
 /* DELETE user admin*/
-router.delete("/", async function (req, res, next) {
-  console.log(req.body);
-  const id = req.body.id;
+router.delete("/:id", async function (req, res, next) {
+  console.log(req.params);
+  const id = req.params.id;
   const data = await runQuery(`DELETE FROM admin WHERE id = '${id}'`);
   res.send({ data: data });
 });
