@@ -11,6 +11,10 @@ router.get("/", async function (req, res, next) {
   const data = await runQuery(`SELECT * FROM question`);
   res.send({ data: data });
 });
+router.get("/no-comment-question", async function (req, res, next) {
+  const data = await runQuery(`SELECT * FROM question where comments = ""`);
+  res.send({ data: data });
+});
 
 router.get("/:id", async function (req, res, next) {
   const id = req.params.id;
