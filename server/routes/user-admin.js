@@ -32,7 +32,7 @@ router.post("/", async function (req, res, next) {
   if(!username || !email) res.status(400);
   const queryString = `insert into admin (id,username,email,password,role) values ('${id}','${username}','${email}','${password}','${role}')`;
   const data = await runQuery(queryString);
-  if (data) res.send({ data: data });
+  if (data) res.send({ data: { id , username, email, password, role }  });
   else {
     res.status(500);
   }
