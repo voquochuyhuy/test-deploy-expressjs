@@ -79,7 +79,7 @@ router.put("/", async function (req, res, next) {
   }
   const updatedAt = moment(new Date()).format('YYYY-MM-DD hh:mm:ss');
   queryString = queryString.concat(
-    `updatedAt = '${updatedAt}' WHERE id = '${id}'`
+    `updatedAt = '${updatedAt}' WHERE Id = '${id}'`
   );
   const data = await runQuery(queryString);
   res.send({ data: data });
