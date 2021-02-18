@@ -44,7 +44,7 @@ router.post("/", async function (req, res, next) {
 router.put("/", async function (req, res, next) {
   const {  id,type,lang,content,additionalInfomation, audioURL,photoURL,questionType,comments, featuredAnswer, votes, status} = req.body;
   let queryString = `UPDATE question SET `;
-  if (title) {
+  if (type) {
     queryString = queryString.concat(`type = '${type}', `);
   }
   if (lang) {
@@ -53,7 +53,7 @@ router.put("/", async function (req, res, next) {
   if (content) {
     queryString = queryString.concat(`content = ${content}, `);
   }
-  if (additionalInformation) {
+  if (additionalInfomation) {
     queryString = queryString.concat(`additionalInfomation = '${additionalInfomation}', `);
   }
   if (audioURL) {
@@ -71,7 +71,7 @@ router.put("/", async function (req, res, next) {
   if (featuredAnswer) {
     queryString = queryString.concat(`featuredAnswer = '${featuredAnswer}', `);
   }
-  if (vote) {
+  if (votes) {
     queryString = queryString.concat(`votes = '${votes}', `);
   }
   if (status) {
